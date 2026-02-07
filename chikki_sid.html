@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
+        font-family: 'Segoe UI', sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .card {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        position: relative;
+        z-index: 2;
+    }
+
+    h1 {
+        color: #e6005c;
+        margin-bottom: 30px;
+    }
+
+    .buttons {
+        position: relative;
+        height: 80px;
+    }
+
+    button {
+        padding: 12px 30px;
+        font-size: 18px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: 0.2s ease;
+    }
+
+    #yes {
+        background-color: #ff3366;
+        color: white;
+        margin-right: 20px;
+    }
+
+    #yes:hover {
+        transform: scale(1.1);
+        background-color: #e6005c;
+    }
+
+    #no {
+        background-color: #ddd;
+        color: #333;
+        position: absolute;
+    }
+
+    .heart {
+        position: absolute;
+        color: red;
+        font-size: 20px;
+        animation: floatUp 6s linear infinite;
+        opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+        0% {
+            transform: translateY(0) scale(1);
+            opacity: 0.8;
+        }
+        100% {
+            transform: translateY(-800px) scale(1.5);
+            opacity: 0;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>Will you be my Valentine, Chikki? 💕</h1>
+    <div class="buttons">
+        <button id="yes">Yes 💖</button>
+        <button id="no">No 🙈</button>
+    </div>
+</div>
+
+<script>
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+
+    function moveNoButton() {
+        const x = Math.random() * 200 - 100;
+        const y = Math.random() * 60 - 30;
+        noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    noBtn.addEventListener("mouseover", moveNoButton);
+    noBtn.addEventListener("click", moveNoButton);
+
+    yesBtn.addEventListener("click", () => {
+        document.body.innerHTML = `
+            <div style="
+                height:100vh;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                flex-direction:column;
+                background:linear-gradient(135deg,#ffb6c1,#ffc0cb);
+                font-family:Segoe UI;
+                text-align:center;
+            ">
+                <h1 style="color:#e6005c;">Yaaay!!! 💘💘💘</h1>
+                <p style="font-size:22px;">You just made me the happiest person ❤️</p>
+                <p style="font-size:20px;">Happy Valentine’s Day, Chikki 🌹</p>
+            </div>
+        `;
+    });
+
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+        heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 6000);
+    }
+
+    setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
